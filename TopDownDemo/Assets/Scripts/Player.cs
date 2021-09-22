@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Fighter {
     
@@ -11,6 +10,7 @@ public class Player : Fighter {
   public Animator damageScreen;
   private Vector2 inputVec;
   [HideInInspector] public int coins = 0;
+  public Text coinsText;
 
   private void Awake() {
     // make sure no duplicate players
@@ -34,6 +34,8 @@ public class Player : Fighter {
     // Update() for more reliable input
     inputVec = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     
+    // update UI
+    coinsText.text = coins.ToString();
   }
 
   private void FixedUpdate() {

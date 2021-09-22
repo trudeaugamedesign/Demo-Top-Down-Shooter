@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Collectable : Collidable {
 
-    protected bool collected;
+  protected bool collected;
 
-    protected override void OnCollide(Collider2D col) {
-        if (col.name=="Player") 
-            OnCollect();
-    }
+  protected override void OnCollide(Collider2D col) {
+    if (col.name=="Player") 
+        OnCollect();
+  }
 
-    protected virtual void OnCollect() {
-        collected = true;
-    }
+  protected virtual void OnCollect() {
+    collected = true;
+  }
 
 }

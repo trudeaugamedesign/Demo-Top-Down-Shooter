@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour {
     string s="";
  
     s += player.coins.ToString();
+    s += "|" + player.hp.ToString();
 
     PlayerPrefs.SetString("SaveState", s);
 
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour {
     string[] data = PlayerPrefs.GetString("SaveState").Split('|');
     
     player.coins = int.Parse(data[0]);
+    player.hp = int.Parse(data[1]);
 
     Debug.Log("Loaded state!");
   }
