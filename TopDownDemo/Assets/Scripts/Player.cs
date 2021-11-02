@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : Fighter {
     
@@ -11,6 +12,7 @@ public class Player : Fighter {
   private Vector2 inputVec;
   [HideInInspector] public int coins = 0;
   public Text coinsText;
+  public Vector3 respawnPos = Vector2.zero;
 
   private void Awake() {
     // make sure no duplicate players
@@ -25,7 +27,7 @@ public class Player : Fighter {
 
   protected override void Start() {
     base.Start();
-
+    InvokeRepeating("SavePlayer", 1f, 10f);
   }
 
   protected override void Update() {
@@ -82,7 +84,26 @@ public class Player : Fighter {
     base.Death();
     // death anim ?
     Debug.Log("player death");
+    coins = 0;
+    hp = maxHp;
+    transform.position = respawnPos;
     GameManager.instance.RestartScene();
+  }
+
+  public void SavePlayer() {
+    SaveSystem.SavePlayer(this);
+  }
+
+  public void LoadPlayer() {
+    PlayerData data = SaveSystem.LoadPlayer();
+
+    hp = data.hp;
+    transform.position = new Vector3(data.pos[0], data.pos[1], data.pos[2]);
+    coins = data.coins;    
+    weapon.attackDmg = hp;
+
+    SceneManager.LoadScene(data.scene);
+
   }
 
 }

@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class DroppedItem : Collectable {
   
-  public GameObject item;
-
+  public GameObject item; 
+  
   protected override void OnCollect() {
     base.OnCollect();
     Destroy(gameObject);

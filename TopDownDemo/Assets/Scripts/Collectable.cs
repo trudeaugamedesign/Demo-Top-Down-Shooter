@@ -8,7 +8,7 @@ public class Collectable : Collidable {
 
   protected override void OnCollide(Collider2D col) {
     if (col.name=="Player") 
-        OnCollect();
+      OnCollect();
   }
 
   protected virtual void OnCollect() {

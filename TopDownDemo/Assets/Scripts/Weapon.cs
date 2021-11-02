@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : Collidable {
+
+  public CameraShake cameraShake;
     
   // damage
   public int attackDmg = 1;
@@ -34,6 +36,7 @@ public class Weapon : Collidable {
         if (col.name == "Player") return;
         
         col.GetComponent<Enemy>().TakeDamage(transform.position, Player.instance.attackDmg + attackDmg, knockbackForce);
+        StartCoroutine(cameraShake.Shake(0.2f, 0.1f));
       }
 
     }

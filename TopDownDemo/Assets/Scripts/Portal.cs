@@ -8,11 +8,10 @@ public class Portal : Collidable {
 
   protected override void OnCollide(Collider2D col) {
     if (col.name == "Player") {
-      // save state
-      GameManager.instance.SaveState();
       
       // change scene and move player
       Player.instance.transform.position = targetPos;
+      Player.instance.respawnPos = targetPos;
       UnityEngine.SceneManagement.SceneManager.LoadScene(targetScene);
     }
   }

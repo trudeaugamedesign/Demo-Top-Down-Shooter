@@ -24,7 +24,6 @@ public class Enemy : Fighter {
 
   protected override void Death() {
     base.Death();
-    Debug.Log("player + " + coinsGiven + " coins");
     Player.instance.coins += coinsGiven;
     // play particles or smth ?
     Destroy(gameObject);

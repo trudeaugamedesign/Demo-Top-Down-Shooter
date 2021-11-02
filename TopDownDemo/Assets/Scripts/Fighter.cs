@@ -11,11 +11,20 @@ public abstract class Fighter : Mover {
   public ParticleSystem bloodParticles;
 
   public float immuneTime = 1f;
-  protected float lastImmune; 
+  public Weapon weapon = null;
+  protected float lastImmune;
   protected bool isImmune = false;
 
   protected override void Update() {
     healthBar.SetHealth(hp, maxHp);
+  }
+
+  public int TotalAttackDamage() {
+    int total = attackDmg;
+    if (weapon != null) {
+      total += weapon.attackDmg;
+    }
+    return total;
   }
 
   public virtual void TakeDamage(Vector3 origin, int dmg, float knockbackForce) {
